@@ -60,11 +60,10 @@ public class CustomTabs {
         /**
          * Method used to open an Uri
          * @param uri The Uri you want to open
-         * @param warmer The Warmer you created first
          * @param activity The current activity
          */
-        public Operable openUrl(Uri uri, Warmer warmer, Activity activity){
-            Context context = warmer.context;
+        public Operable openUrl(Uri uri, Activity activity){
+            Context context = activity.getApplicationContext();
 
             if (packageNameToUse != null) {
 
@@ -98,11 +97,10 @@ public class CustomTabs {
         /**
          * Method used to open an Uri
          * @param url The Url you want to open
-         * @param warmer The Warmer you created first
          * @param activity The current activity
          */
-        public Operable openUrl(String url, Warmer warmer, Activity activity){
-            return openUrl(Uri.parse(url), warmer, activity);
+        public Operable openUrl(String url, Activity activity){
+            return openUrl(Uri.parse(url), activity);
         }
 
     }
