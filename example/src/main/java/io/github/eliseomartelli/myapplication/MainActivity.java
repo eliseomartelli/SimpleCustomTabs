@@ -8,7 +8,6 @@ import io.github.eliseomartelli.simplecustomtabs.CustomTabs;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,12 +19,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CustomTabs.with(getApplicationContext())
-                        .setStyle(new CustomTabs.Style()
+                        .setStyle(new CustomTabs.Style(getApplicationContext())
                                 .setShowTitle(true)
                                 .setStartAnimation(android.R.anim.fade_in, android.R.anim.fade_out)
                                 .setExitAnimation(android.R.anim.fade_in, android.R.anim.fade_out)
                                 .setToolbarColor(R.color.colorPrimary))
                         .openUrl("http://eliseomartelli.github.io", MainActivity.this);
+
             }
         });
     }

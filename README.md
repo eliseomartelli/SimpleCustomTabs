@@ -30,14 +30,33 @@ You can see an example use of this library opening "example" module.
 
 # Styling 
 
+Choose what to style!
+
 ```java
-    CustomTabs.with(getApplicationContext()).setStyle(new CustomTabs.Style()
-                .setToolbarColor(R.color.color_id)
-                .setShowTitle(true)
-                .setStartAnimation(R.anim.anim_id, R.anim.anim_id)
-                .setExitAnimation(R.anim.anim_id, R.anim.anim_id))
+    CustomTabs.Style style = new CustomTabs.Style(getApplicationContext());
+    style.setActionButton(icon, description, pendingIntent, tint);
+    style.setCloseButton(closeIcon);
+    style.setShowTitle(showTitle);
+    style.setStartAnimation(android.R.anim.fade_in, android.R.anim.fade_out);
+    style.setExitAnimation(android.R.anim.fade_in, android.R.anim.fade_out);
+    style.setToolbarColor(R.color.colorPrimary);
+    style.addMenuItem(itemDescription, itemPendingIntent);
+
+    CustomTabs
+        .with(getApplicationContext())
+        .setStyle(style)
         .openUrl("http://google.com", this);
-    
+```
+Do you want to write less? No Problem!
+
+```java
+    CustomTabs.with(getApplicationContext())
+        .setStyle(new CustomTabs.Style(getApplicationContext())
+                .setShowTitle(true)
+                .setStartAnimation(R.anim.animation, R.anim.animation)
+                .setExitAnimation(R.anim.animation, R.anim.animation)
+                .setToolbarColor(R.color.toolbarColor))
+        .openUrl("http://google.com", this);
 ```
 
 # One More Thing
@@ -45,6 +64,5 @@ No... This Library is not from Apple...
 
 Your user doesn't have Chrome Installed? No Problem!
 The Url will be opened in his browser!
-
 
 Hope you enjoy!

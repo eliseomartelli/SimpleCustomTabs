@@ -1,17 +1,23 @@
 package io.github.eliseomartelli.simplecustomtabs;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.annotation.AnimRes;
-import android.support.annotation.ColorRes;
 import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
 import android.support.v4.content.ContextCompat;
+import android.support.annotation.AnimRes;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
+
+import java.util.ArrayList;
 
 import io.github.eliseomartelli.simplecustomtabs.helpers.ChromePackageHelper;
 
@@ -67,7 +73,7 @@ public class CustomTabs {
 
             if (packageNameToUse != null) {
 
-                if (style == null) style = new Style();
+                if (style == null) style = new Style(context);
 
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
 
@@ -86,6 +92,22 @@ public class CustomTabs {
                     builder.setExitAnimations
                             (context, style.exitEnterAnimation, style.exitCloseAnimation);
                 }
+
+                if (style.closeButton != null) {
+                    builder.setCloseButtonIcon(style.closeButton);
+                }
+
+                if (style.actionButton != null) {
+                    builder.setActionButton(style.actionButton.icon, style.actionButton.description,
+                            style.actionButton.pendingIntent, style.actionButton.tint);
+                }
+
+                if (style.menuItemArrayList != null){
+                    for (Style.MenuItem item: style.menuItemArrayList){
+                        builder.addMenuItem(item.description, item.pendingIntent);
+                    }
+                }
+
                 builder.build().launchUrl(activity, uri);
             } else {
                context.startActivity(new Intent(Intent.ACTION_VIEW)
@@ -110,15 +132,81 @@ public class CustomTabs {
      * This class defines the Style you want to apply to the Custom Tab
      */
     public static class Style {
+        Context context;
+
         private int toolbarColor;
         private int startEnterAnimation;
         private int exitEnterAnimation;
         private int startCloseAnimation;
         private int exitCloseAnimation;
         private boolean showTitle = false;
+        Bitmap closeButton;
+        ActionButton actionButton;
 
-        public Style(){
+        ArrayList<MenuItem> menuItemArrayList;
 
+        public Style(Context context){
+            this.context = context;
+            menuItemArrayList = new ArrayList<>();
+        }
+
+        /**
+         * Method used to add a Menu Item.
+         * @param description The description of the action
+         * @param pendingIntent The pending intent it executes
+         */
+        public Style addMenuItem(String description, PendingIntent pendingIntent){
+            menuItemArrayList.add(new MenuItem(description, pendingIntent));
+            return this;
+        }
+
+        /**
+         * Method used to set the Action Button
+         * @param icon The icon you've to show
+         * @param description The description of the action
+         * @param pendingIntent The pending intent it executes
+         * @param tint True if you want to tint the icon, false if not.
+         */
+        public Style setActionButton(Bitmap icon, String description, PendingIntent pendingIntent,
+                                     boolean tint) {
+            this.actionButton = new ActionButton(icon, description, pendingIntent, tint);
+            return this;
+        }
+
+        /**
+         * Method used to set the Action Button
+         * @param icon The icon you've to show
+         * @param description The description of the action
+         * @param pendingIntent The pending intent it executes
+         * @param tint True if you want to tint the icon, false if not.
+         */
+        public Style setActionButton(@DrawableRes int icon, String description, PendingIntent
+                pendingIntent,
+                                     boolean tint) {
+            this.actionButton = new ActionButton
+                    (BitmapFactory.decodeResource(context.getResources(), icon),
+                            description,
+                            pendingIntent,
+                            tint);
+            return this;
+        }
+
+        /**
+         * Method used to set the close button icon
+         * @param closeButton The close button icon you want to show
+         */
+        public Style setCloseButton(@DrawableRes int closeButton) {
+            this.closeButton = BitmapFactory.decodeResource(context.getResources(), closeButton);
+            return this;
+        }
+
+        /**
+         * Method used to set the close button icon
+         * @param closeButton The close button icon you want to show
+         */
+        public Style setCloseButton(Bitmap closeButton) {
+            this.closeButton = closeButton;
+            return this;
         }
 
         /**
@@ -163,6 +251,31 @@ public class CustomTabs {
             return this;
         }
 
+        public class ActionButton {
+            Bitmap icon;
+            String description;
+            PendingIntent pendingIntent;
+            boolean tint;
+
+            public ActionButton(Bitmap icon, String description, PendingIntent pendingIntent,
+                                boolean tint){
+                this.icon = icon;
+                this.description = description;
+                this.pendingIntent = pendingIntent;
+                this.tint = tint;
+            }
+        }
+
+        public class MenuItem {
+            String description;
+            PendingIntent pendingIntent;
+
+            public MenuItem(String description, PendingIntent pendingIntent){
+                this.description = description;
+                this.pendingIntent = pendingIntent;
+            }
+        }
+
     }
 
     public static class Warmer {
@@ -172,7 +285,8 @@ public class CustomTabs {
         }
 
         private Warmer warm(){
-            CustomTabsServiceConnection mCustomTabServiceConnection = new CustomTabsServiceConnection() {
+            CustomTabsServiceConnection mCustomTabServiceConnection =
+                    new CustomTabsServiceConnection() {
                 @Override
                 public void onCustomTabsServiceConnected(ComponentName componentName,
                                                          CustomTabsClient customTabsClient) {
