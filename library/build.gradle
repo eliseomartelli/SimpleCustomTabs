@@ -32,3 +32,8 @@ dependencies {
 }
 
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+
+/*
+        Used to build
+        ./gradlew clean build generateRelease
+ */
