@@ -135,7 +135,7 @@ public class CustomTabs {
          * @param startEnterAnimation The Enter Animation of the custom tab
          * @param startCloseAnimation The Close Animation of the new activity
          */
-        public Style setStartAnimation(@AnimRes int startEnterAnimation,@AnimRes int
+        public Style setStartAnimation(@AnimRes int startEnterAnimation, @AnimRes int
                 startCloseAnimation){
             this.startEnterAnimation = startEnterAnimation;
             this.startCloseAnimation = startCloseAnimation;
@@ -147,7 +147,8 @@ public class CustomTabs {
          * @param exitEnterAnimation The Enter Animation of the new activity
          * @param exitCloseAnimation The Close Animation of the custom tab
          */
-        public Style setExitAnimation(int exitEnterAnimation, int exitCloseAnimation){
+        public Style setExitAnimation(@AnimRes int exitEnterAnimation, @AnimRes int
+                exitCloseAnimation){
             this.exitEnterAnimation = exitEnterAnimation;
             this.exitCloseAnimation = exitCloseAnimation;
             return this;

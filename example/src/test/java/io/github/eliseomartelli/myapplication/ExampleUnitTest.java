@@ -1,4 +1,4 @@
-package io.github.eliseomartelli.simplecustomtabs;
+package io.github.eliseomartelli.myapplication;
 
 import org.junit.Test;
 

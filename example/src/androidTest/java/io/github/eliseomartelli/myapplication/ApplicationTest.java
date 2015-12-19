@@ -1,4 +1,4 @@
-package io.github.eliseomartelli.simplecustomtabs;
+package io.github.eliseomartelli.myapplication;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
