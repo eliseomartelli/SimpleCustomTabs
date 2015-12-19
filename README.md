@@ -40,4 +40,11 @@ You can see an example use of this library opening "example" module.
     
 ```
 
+# One More Thing
+No... This Library is not from Apple...
+
+Your user doesn't have Chrome Installed? No Problem!
+The Url will be opened in his browser!
+
+
 Hope you enjoy!

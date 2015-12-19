@@ -88,8 +88,9 @@ public class CustomTabs {
                 }
                 builder.build().launchUrl(activity, uri);
             } else {
-               context.startActivity(new Intent(Intent.ACTION_VIEW).setData(uri));
-
+               context.startActivity(new Intent(Intent.ACTION_VIEW)
+                       .setData(uri)
+                       .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
             return this;
         }
