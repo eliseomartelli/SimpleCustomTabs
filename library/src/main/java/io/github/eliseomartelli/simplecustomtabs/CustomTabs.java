@@ -61,11 +61,14 @@ public class CustomTabs {
          * Method used to open an Uri
          * @param uri The Uri you want to open
          * @param warmer The Warmer you created first
+         * @param activity The current activity
          */
-        public Operable openUrl(Uri uri, Warmer warmer){
+        public Operable openUrl(Uri uri, Warmer warmer, Activity activity){
             Context context = warmer.context;
 
             if (packageNameToUse != null) {
+
+                if (style == null) style = new Style();
 
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
 
@@ -84,15 +87,22 @@ public class CustomTabs {
                     builder.setExitAnimations
                             (context, style.exitEnterAnimation, style.exitCloseAnimation);
                 }
-                builder.build().launchUrl((Activity) context, uri);
+                builder.build().launchUrl(activity, uri);
             } else {
                context.startActivity(new Intent(Intent.ACTION_VIEW).setData(uri));
 
             }
             return this;
         }
-        public Operable openUrl(String url, Warmer warmer){
-            return openUrl(Uri.parse(url), warmer);
+
+        /**
+         * Method used to open an Uri
+         * @param url The Url you want to open
+         * @param warmer The Warmer you created first
+         * @param activity The current activity
+         */
+        public Operable openUrl(String url, Warmer warmer, Activity activity){
+            return openUrl(Uri.parse(url), warmer, activity);
         }
 
     }

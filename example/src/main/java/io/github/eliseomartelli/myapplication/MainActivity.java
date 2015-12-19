@@ -20,12 +20,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomTabs.with(getApplicationContext()).setStyle(new CustomTabs.Style()
-                        .setToolbarColor(R.color.colorPrimary)
-                        .setShowTitle(true)
-                        .setStartAnimation(android.R.anim.fade_in, android.R.anim.fade_out)
-                        .setExitAnimation(android.R.anim.fade_in, android.R.anim.fade_out))
-                        .openUrl("http://eliseomartelli.github.io", customtabsWarmer);
+                CustomTabs.with(getApplicationContext())
+                        .openUrl("http://eliseomartelli.github.io", customtabsWarmer,
+                                MainActivity.this);
             }
         });
     }
