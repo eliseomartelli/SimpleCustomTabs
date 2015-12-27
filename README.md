@@ -1,5 +1,6 @@
 # SimpleCustomTabs
-Simple Custom Tabs is an open source Android Library made to use custom tabs without going crazy!
+A library made to use custom tabs without going crazy!
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SimpleCustomTabs-orange.svg?style=flat)](http://android-arsenal.com/details/1/2950)
 
 To use this library in your project add the dependency to your build.gradle file.
 
