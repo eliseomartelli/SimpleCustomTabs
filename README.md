@@ -5,7 +5,7 @@ A library made to use custom tabs without going crazy!
 
 To use this library in your project add the dependency to your build.gradle file.
 
-```
+```gradle
 dependencies {
     compile 'io.github.eliseomartelli:simple-custom-tabs:1.1.0'
 }
