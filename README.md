@@ -11,9 +11,9 @@ dependencies {
 }
 ```
 
-You can see an example use of this library opening "example" module.
+You can see an **example** use of this library opening *"example"* module.
 
-# Bare Minimum 
+## Bare Minimum 
 
 ```java
     @Override
@@ -30,7 +30,7 @@ You can see an example use of this library opening "example" module.
     }
 ```
 
-# Styling 
+## Styling 
 
 Choose what to style!
 
@@ -49,7 +49,7 @@ Choose what to style!
         .setStyle(style)
         .openUrl("http://google.com", this);
 ```
-Do you want to write less? No Problem!
+Do you want to **write less**? No Problem!
 
 ```java
     CustomTabs.with(getApplicationContext())
@@ -61,9 +61,7 @@ Do you want to write less? No Problem!
         .openUrl("http://google.com", this);
 ```
 
-# One More Thing
-No... This Library is not from Apple...
-
+## Fallback
 Your user doesn't have Chrome Installed? No Problem!
 The Url will be opened in his browser!
 
