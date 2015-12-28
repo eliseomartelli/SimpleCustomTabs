@@ -66,3 +66,10 @@ Your user doesn't have Chrome Installed? No Problem!
 The Url will be opened in his browser!
 
 Hope you enjoy!
+
+
+## Screenshots
+
+![](https://github.com/eliseomartelli/SimpleCustomTabs/raw/master/assets/Screenshot1.jpg "ScreenShot 1")
+![](https://github.com/eliseomartelli/SimpleCustomTabs/raw/master/assets/Screenshot2.jpg "ScreenShot 2")
+
