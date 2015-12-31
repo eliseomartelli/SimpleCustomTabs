@@ -1,4 +1,5 @@
 # SimpleCustomTabs
+
 A library made to use custom tabs without going crazy!
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-SimpleCustomTabs-orange.svg?style=flat)](http://android-arsenal.com/details/1/2950)
@@ -7,7 +8,7 @@ To use this library in your project add the dependency to your build.gradle file
 
 ```gradle
 dependencies {
-    compile 'io.github.eliseomartelli:simple-custom-tabs:1.1.0'
+    compile 'io.github.eliseomartelli:simple-custom-tabs:1.2.0'
 }
 ```
 
@@ -62,8 +63,27 @@ Do you want to **write less**? No Problem!
 ```
 
 ## Fallback
+
 Your user doesn't have Chrome Installed? No Problem!
-The Url will be opened in his browser!
+The url will be opened in an installed browser without any edit to the code.
+
+If you want a customized experience you can set a fallback activity by using:
+
+```java
+    CustomTabs.with(getApplicationContext())
+        .setFallBackActivity(ActivityToOpen.class)
+        .openUrl("http://google.com", this);
+```
+
+The URI of the site will be placed in Intent's data.
+To get the URI from the newly fired you have to get the data from Activity's intent.
+To get the data from the Activity intent you can do like this:
+
+```java
+    Uri uri = getIntent().getData();
+```
+
+You can see an example [here](https://github.com/eliseomartelli/SimpleCustomTabs/blob/master/example/src/main/java/io/github/eliseomartelli/myapplication/FallbackActivity.java).
 
 ## Screenshots
 

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
                                 .setStartAnimation(android.R.anim.fade_in, android.R.anim.fade_out)
                                 .setExitAnimation(android.R.anim.fade_in, android.R.anim.fade_out)
                                 .setToolbarColor(R.color.colorPrimary))
+                        .setFallBackActivity(FallbackActivity.class)
                         .openUrl("http://eliseomartelli.github.io", MainActivity.this);
 
             }

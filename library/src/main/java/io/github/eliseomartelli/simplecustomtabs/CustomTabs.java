@@ -42,6 +42,7 @@ public class CustomTabs {
     public static class Operable {
         Style style;
         Context context;
+        Class <?> fallbackClass;
 
         private Operable(Context context){
             this.context = context;
@@ -60,6 +61,11 @@ public class CustomTabs {
          */
         public Operable setStyle(Style style){
             this.style = style;
+            return this;
+        }
+
+        public Operable setFallBackActivity(Class <?> fallbackClass){
+            this.fallbackClass = fallbackClass;
             return this;
         }
 
@@ -110,9 +116,15 @@ public class CustomTabs {
 
                 builder.build().launchUrl(activity, uri);
             } else {
-               context.startActivity(new Intent(Intent.ACTION_VIEW)
-                       .setData(uri)
-                       .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                Intent intent;
+
+                if (fallbackClass != null){
+                    intent = new Intent(activity, fallbackClass);
+                } else {
+                    intent = new Intent(Intent.ACTION_VIEW);
+                }
+
+                context.startActivity(intent.setData(uri).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
             return this;
         }
