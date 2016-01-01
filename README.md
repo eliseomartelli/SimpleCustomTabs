@@ -12,23 +12,23 @@ dependencies {
 }
 ```
 
-You can see an **example** use of this library opening *"example"* module.
+You can see an **example** use of this library opening [*"example"*](https://github.com/eliseomartelli/SimpleCustomTabs/tree/master/example) module.
 
 ## Bare Minimum 
 
 ```java
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        //Warm up section
-        CustomTabs.with(getApplicationContext()).warm();
-        
-        
-        //Load section
-        CustomTabs.with(getApplicationContext()).openUrl("http://google.com", this);
-    }
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    
+    //Warm up section
+    CustomTabs.with(getApplicationContext()).warm();
+    
+    
+    //Load section
+    CustomTabs.with(getApplicationContext()).openUrl("http://google.com", this);
+}
 ```
 
 ## Styling 
@@ -36,30 +36,30 @@ You can see an **example** use of this library opening *"example"* module.
 Choose what to style!
 
 ```java
-    CustomTabs.Style style = new CustomTabs.Style(getApplicationContext());
-    style.setActionButton(icon, description, pendingIntent, tint);
-    style.setCloseButton(closeIcon);
-    style.setShowTitle(showTitle);
-    style.setStartAnimation(android.R.anim.fade_in, android.R.anim.fade_out);
-    style.setExitAnimation(android.R.anim.fade_in, android.R.anim.fade_out);
-    style.setToolbarColor(R.color.colorPrimary);
-    style.addMenuItem(itemDescription, itemPendingIntent);
+CustomTabs.Style style = new CustomTabs.Style(getApplicationContext());
+style.setActionButton(icon, description, pendingIntent, tint);
+style.setCloseButton(closeIcon);
+style.setShowTitle(showTitle);
+style.setStartAnimation(android.R.anim.fade_in, android.R.anim.fade_out);
+style.setExitAnimation(android.R.anim.fade_in, android.R.anim.fade_out);
+style.setToolbarColor(R.color.colorPrimary);
+style.addMenuItem(itemDescription, itemPendingIntent);
 
-    CustomTabs
-        .with(getApplicationContext())
-        .setStyle(style)
-        .openUrl("http://google.com", this);
+CustomTabs
+    .with(getApplicationContext())
+    .setStyle(style)
+    .openUrl("http://google.com", this);
 ```
 Do you want to **write less**? No Problem!
 
 ```java
-    CustomTabs.with(getApplicationContext())
-        .setStyle(new CustomTabs.Style(getApplicationContext())
-                .setShowTitle(true)
-                .setStartAnimation(R.anim.animation, R.anim.animation)
-                .setExitAnimation(R.anim.animation, R.anim.animation)
-                .setToolbarColor(R.color.toolbarColor))
-        .openUrl("http://google.com", this);
+CustomTabs.with(getApplicationContext())
+    .setStyle(new CustomTabs.Style(getApplicationContext())
+            .setShowTitle(true)
+            .setStartAnimation(R.anim.animation, R.anim.animation)
+            .setExitAnimation(R.anim.animation, R.anim.animation)
+            .setToolbarColor(R.color.toolbarColor))
+    .openUrl("http://google.com", this);
 ```
 
 ## Fallback
@@ -70,9 +70,9 @@ The url will be opened in an installed browser without any edit to the code.
 If you want a customized experience you can set a fallback activity by using:
 
 ```java
-    CustomTabs.with(getApplicationContext())
-        .setFallBackActivity(ActivityToOpen.class)
-        .openUrl("http://google.com", this);
+CustomTabs.with(getApplicationContext())
+    .setFallBackActivity(ActivityToOpen.class)
+    .openUrl("http://google.com", this);
 ```
 
 The URI of the site will be placed in Intent's data.
@@ -80,7 +80,7 @@ To get the URI from the newly fired you have to get the data from Activity's int
 To get the data from the Activity intent you can do like this:
 
 ```java
-    Uri uri = getIntent().getData();
+Uri uri = getIntent().getData();
 ```
 
 You can see an example [here](https://github.com/eliseomartelli/SimpleCustomTabs/blob/master/example/src/main/java/io/github/eliseomartelli/myapplication/FallbackActivity.java).
