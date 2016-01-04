@@ -12,6 +12,8 @@ import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.annotation.AnimRes;
 import android.support.annotation.ColorRes;
@@ -124,7 +126,15 @@ public class CustomTabs {
                     intent = new Intent(Intent.ACTION_VIEW);
                 }
 
-                context.startActivity(intent.setData(uri).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                ActivityCompat.startActivity(
+                        activity,
+                        intent
+                            .setData(uri)
+                            .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+                        ActivityOptionsCompat
+                            .makeCustomAnimation(activity.getApplicationContext(),
+                                    style.startEnterAnimation,
+                                    style.startCloseAnimation).toBundle());
             }
             return this;
         }
