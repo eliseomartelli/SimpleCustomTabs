@@ -8,30 +8,41 @@ To use this library in your project add the dependency to your build.gradle file
 
 ```gradle
 dependencies {
-    compile 'io.github.eliseomartelli:simple-custom-tabs:1.2.1'
+    compile 'io.github.eliseomartelli:simple-custom-tabs:1.4.0'
 }
 ```
 
 You can see an **example** use of this library opening [*"example"*](https://github.com/eliseomartelli/SimpleCustomTabs/tree/master/example) module.
 
-## Bare Minimum 
+## Bare Minimum
 
 ```java
+
+private CustomTabs.Warmer warmer;
+
+
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    
+
     //Warm up section
-    CustomTabs.with(getApplicationContext()).warm();
-    
-    
+    warmer = CustomTabs.with(getApplicationContext()).warm();
+
+
     //Load section
     CustomTabs.with(getApplicationContext()).openUrl("http://google.com", this);
 }
+
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+    warmer.unwarm();
+}
+
 ```
 
-## Styling 
+## Styling
 
 Choose what to style!
 
