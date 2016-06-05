@@ -8,7 +8,7 @@ To use this library in your project add the dependency to your build.gradle file
 
 ```gradle
 dependencies {
-    compile 'io.github.eliseomartelli:simple-custom-tabs:1.2.0'
+    compile 'io.github.eliseomartelli:simple-custom-tabs:1.2.1'
 }
 ```
 

@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
+import android.support.customtabs.CustomTabsService;
 import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
 import android.support.v4.app.ActivityCompat;
@@ -301,13 +302,15 @@ public class CustomTabs {
     }
 
     public static class Warmer {
-        Context context;
+        private Context context;
+        private CustomTabsServiceConnection mCustomTabServiceConnection;
+
         public Warmer(Context context) {
             this.context = context;
         }
 
         private Warmer warm(){
-            CustomTabsServiceConnection mCustomTabServiceConnection =
+            mCustomTabServiceConnection =
                     new CustomTabsServiceConnection() {
                 @Override
                 public void onCustomTabsServiceConnected(ComponentName componentName,
@@ -330,6 +333,12 @@ public class CustomTabs {
                         mCustomTabServiceConnection);
             }
             return this;
+        }
+
+        public void unwarm() {
+            if (mCustomTabServiceConnection != null) {
+                context.unbindService(mCustomTabServiceConnection);
+            }
         }
     }
 }

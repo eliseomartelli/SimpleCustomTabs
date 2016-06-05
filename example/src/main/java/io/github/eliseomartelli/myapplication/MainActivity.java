@@ -8,12 +8,14 @@ import io.github.eliseomartelli.simplecustomtabs.CustomTabs;
 
 public class MainActivity extends AppCompatActivity {
 
+    CustomTabs.Warmer warmer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CustomTabs.with(this).warm();
+        warmer = CustomTabs.with(this).warm();
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 CustomTabs.with(getApplicationContext())
                         .setStyle(new CustomTabs.Style(getApplicationContext())
                                 .setShowTitle(true)
+                                .setCloseButton(android.R.drawable.button_onoff_indicator_off)
                                 .setStartAnimation(android.R.anim.fade_in, android.R.anim.fade_out)
                                 .setExitAnimation(android.R.anim.fade_in, android.R.anim.fade_out)
                                 .setToolbarColor(R.color.colorPrimary))
@@ -31,4 +34,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        warmer.unwarm();
+    }
 }
