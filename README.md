@@ -8,7 +8,7 @@ To use this library in your project add the dependency to your build.gradle file
 
 ```gradle
 dependencies {
-    compile 'io.github.eliseomartelli:simple-custom-tabs:1.4.0'
+    compile 'io.github.eliseomartelli:simple-custom-tabs:1.4.1'
 }
 ```
 
@@ -54,7 +54,10 @@ style.setShowTitle(showTitle);
 style.setStartAnimation(android.R.anim.fade_in, android.R.anim.fade_out);
 style.setExitAnimation(android.R.anim.fade_in, android.R.anim.fade_out);
 style.setToolbarColor(R.color.colorPrimary);
+style.setToolbarColorInt(color);
 style.addMenuItem(itemDescription, itemPendingIntent);
+
+
 
 CustomTabs
     .with(getApplicationContext())

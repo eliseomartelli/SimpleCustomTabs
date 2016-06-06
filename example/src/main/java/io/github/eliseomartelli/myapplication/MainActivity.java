@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                                 .setCloseButton(android.R.drawable.button_onoff_indicator_off)
                                 .setStartAnimation(android.R.anim.fade_in, android.R.anim.fade_out)
                                 .setExitAnimation(android.R.anim.fade_in, android.R.anim.fade_out)
-                                .setToolbarColorInt(Color.rgb(244,244,244)))
+                                .setToolbarColor(R.color.colorPrimary))
                         .setFallBackActivity(FallbackActivity.class)
                         .openUrl("http://eliseomartelli.github.io", MainActivity.this);
 
