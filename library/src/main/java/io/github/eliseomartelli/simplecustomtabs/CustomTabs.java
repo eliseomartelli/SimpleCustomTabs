@@ -87,7 +87,7 @@ public class CustomTabs {
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
 
                 if (style.toolbarColor != 0) {
-                    builder.setToolbarColor(ContextCompat.getColor(context, style.toolbarColor));
+                    builder.setToolbarColor(style.toolbarColor);
                 }
 
                 builder.setShowTitle(style.showTitle);
@@ -246,9 +246,20 @@ public class CustomTabs {
          * @param toolbarColor Color res id you want to set
          */
         public Style setToolbarColor(@ColorRes int toolbarColor) {
+            this.toolbarColor = ContextCompat.getColor(context, toolbarColor);
+            return this;
+        }
+
+
+        /**
+         * Method used to set the Toolbar color of the custom tab
+         * @param toolbarColor Color you want to set
+         */
+        public Style setToolbarColorInt(int toolbarColor) {
             this.toolbarColor = toolbarColor;
             return this;
         }
+
 
         /**
          * Method used to set the Animations when the Custom Tab opens
