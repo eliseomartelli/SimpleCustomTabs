@@ -347,9 +347,10 @@ public class CustomTabs {
         }
 
         public void unwarm() {
-            if (mCustomTabServiceConnection != null) {
-                context.unbindService(mCustomTabServiceConnection);
-            }
+            if (mCustomTabServiceConnection == null) return;
+            context.unbindService(mCustomTabServiceConnection);
+            mCustomTabsClient = null;
+            mCustomTabsSession = null;
         }
     }
 }
