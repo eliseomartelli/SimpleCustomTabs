@@ -347,7 +347,7 @@ public class CustomTabs {
         }
 
         public void unwarm() {
-            if (mCustomTabServiceConnection == null) return;
+            if (mCustomTabServiceConnection == null || packageNameToUse == null) return;
             context.unbindService(mCustomTabServiceConnection);
             mCustomTabsClient = null;
             mCustomTabsSession = null;
